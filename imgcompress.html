@@ -57,6 +57,16 @@
         h1 {
             margin: 0;
             font-size: 2rem;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         /* Top Buttons Container */
@@ -66,6 +76,7 @@
             right: 20px;
             display: flex;
             gap: 10px;
+            z-index: 1000;
         }
 
         /* Theme Toggle and Home Button */
@@ -81,11 +92,12 @@
             align-items: center;
             gap: 8px;
             box-shadow: var(--shadow);
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         #theme-toggle:hover, #home-btn:hover {
             background-color: var(--secondary-color);
+            transform: scale(1.05);
         }
 
         #theme-toggle i, #home-btn i {
@@ -98,6 +110,18 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: var(--shadow);
+            animation: slideIn 1s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         #compression-tool label {
@@ -114,11 +138,17 @@
             background: var(--bg-color);
             cursor: pointer;
             color: var(--text-color);
+            transition: border-color 0.3s ease;
+        }
+
+        #compression-tool input[type="file"]:hover {
+            border-color: var(--secondary-color);
         }
 
         #compression-tool input[type="range"] {
             width: 100%;
             margin: 10px 0;
+            cursor: pointer;
         }
 
         #compression-tool button {
@@ -131,16 +161,18 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         #compression-tool button:hover {
             background-color: var(--secondary-color);
+            transform: scale(1.05);
         }
 
         #compression-tool button:disabled {
             background-color: #ccc;
             cursor: not-allowed;
+            transform: none;
         }
 
         /* Image Container */
@@ -156,6 +188,11 @@
             height: auto;
             border-radius: 5px;
             box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        #image-container img:hover {
+            transform: scale(1.02);
         }
 
         /* File Size Display */
@@ -196,28 +233,50 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1rem;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         #download-btn:hover {
             background-color: #218838;
+            transform: scale(1.05);
         }
 
         /* Footer */
         footer {
             text-align: center;
-            padding: 10px 0;
+            padding: 5px 0; /* Reduced padding */
             background-color: var(--primary-color);
             color: #fff;
             position: fixed;
             width: 100%;
             bottom: 0;
+            font-size: 0.6rem; /* Very small font size */
+            z-index: 999; /* Ensure footer is below buttons */
         }
 
         /* Ad Units */
         #ad-top, #ad-bottom {
             margin: 20px 0;
             text-align: center;
+        }
+
+        /* Responsive Design for Buttons */
+        @media (max-width: 768px) {
+            #top-buttons {
+                top: auto;
+                bottom: 80px; /* Adjusted to avoid footer */
+                right: 20px;
+                flex-direction: column;
+            }
+
+            #theme-toggle, #home-btn {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+
+            #theme-toggle i, #home-btn i {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
