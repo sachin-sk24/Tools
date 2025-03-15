@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert and compress images to JPG, PNG, GIF, and more. A free online image converter tool with dynamic functionality and SEO optimization.">
+    <meta name="keywords" content="image converter, JPG, PNG, GIF, compress images, online tools, image optimization">
+    <meta name="author" content="Your Company Name">
+    <title>Image Converter - Convert & Compress Images Online</title>
+    <!-- Google AdSense Script -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_UNIT_ID" crossorigin="anonymous"></script>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: #1a1a1a;
+            color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Upload Section */
+        #upload-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-mode #upload-section {
+            background: #333;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        .upload-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .file-label {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #2575fc;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .file-label:hover {
+            background: #1a5bbf;
+        }
+
+        .file-label input {
+            display: none;
+        }
+
+        .conversion-options {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        #format-select, #compression-slider {
+            width: 80%;
+            margin: 10px 0;
+        }
+
+        #compression-value {
+            font-size: 1rem;
+            color: #555;
+        }
+
+        body.dark-mode #compression-value {
+            color: #ddd;
+        }
+
+        #convert-btn {
+            padding: 10px 20px;
+            background: #6a11cb;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        #convert-btn:hover {
+            background: #4d0a9e;
+        }
+
+        /* Selected File Display */
+        #selected-file {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        body.dark-mode #selected-file {
+            color: #ddd;
+        }
+
+        /* Output Section */
+        #output-section {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        body.dark-mode #output-section {
+            background: #333;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+        }
+
+        #download-converted-btn {
+            padding: 10px 20px;
+            background: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: none; /* Hidden by default */
+        }
+
+        #download-converted-btn:hover {
+            background: #218838;
+        }
+
+        /* Ad Units */
+        .ad-unit {
+            margin: 20px 0;
+            text-align: center;
+            display: none; /* Hide ads initially */
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: #333;
+            color: #fff;
+            margin-top: 20px;
+        }
+
+        /* Theme Toggle and Home Buttons */
+        .button-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+        }
+
+        .theme-toggle, .home-btn {
+            padding: 10px;
+            background: #2575fc;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle:hover, .home-btn:hover {
+            background: #1a5bbf;
+            transform: scale(1.1);
+        }
+
+        .theme-toggle:active, .home-btn:active {
+            transform: scale(0.9);
+        }
+    </style>
+</head>
+<body>
+    <!-- Button Container -->
+    <div class="button-container">
+        <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+        <button class="home-btn" onclick="window.location.href='/Tools/index.html'">🏠</button>
+    </div>
+
+    <header>
+        <div class="header-content">
+            <h1>Image Converter</h1>
+            <p>Convert and compress images to JPG, PNG, GIF, and more.</p>
+        </div>
+    </header>
+
+    <main>
+        <!-- Ad Unit 1 -->
+        <div class="ad-unit">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_UNIT_ID"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- File Upload Section -->
+        <section id="upload-section">
+            <div class="upload-box">
+                <label for="image-file" class="file-label">
+                    <span>Choose Image</span>
+                    <input type="file" id="image-file" accept="image/*" />
+                </label>
+                <div id="selected-file"></div>
+                <div class="conversion-options">
+                    <label for="format-select">Output Format:</label>
+                    <select id="format-select">
+                        <option value="jpg">JPG</option>
+                        <option value="png">PNG</option>
+                        <option value="gif">GIF</option>
+                    </select>
+                    <label for="compression-slider">Compression Level:</label>
+                    <input type="range" id="compression-slider" min="0" max="1" step="0.1" value="1" />
+                    <span id="compression-value">100%</span>
+                </div>
+                <button id="convert-btn">Convert Image</button>
+                <button id="download-converted-btn">Download Converted Image</button>
+            </div>
+        </section>
+
+        <!-- Ad Unit 2 -->
+        <div class="ad-unit">
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_UNIT_ID"
+                 data-ad-slot="0987654321"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Your Company Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for Image Conversion
+        const formatSelect = document.getElementById('format-select');
+        const compressionSlider = document.getElementById('compression-slider');
+        const compressionValue = document.getElementById('compression-value');
+
+        // Update compression value display
+        compressionSlider.addEventListener('input', function () {
+            compressionValue.textContent = `${Math.round(this.value * 100)}%`;
+        });
+
+        document.getElementById('image-file').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            const selectedFileDiv = document.getElementById('selected-file');
+
+            if (file) {
+                selectedFileDiv.textContent = `Selected File: ${file.name}`;
+            } else {
+                selectedFileDiv.textContent = '';
+            }
+        });
+
+        document.getElementById('convert-btn').addEventListener('click', async function () {
+            const fileInput = document.getElementById('image-file');
+            const format = formatSelect.value;
+            const quality = parseFloat(compressionSlider.value);
+
+            if (fileInput.files.length === 0) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const img = new Image();
+                img.src = event.target.result;
+
+                img.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    ctx.drawImage(img, 0, 0);
+
+                    // Convert and compress the image
+                    canvas.toBlob(function (blob) {
+                        const downloadBtn = document.getElementById('download-converted-btn');
+                        downloadBtn.style.display = 'block';
+                        downloadBtn.onclick = function () {
+                            const link = document.createElement('a');
+                            link.href = URL.createObjectURL(blob);
+                            link.download = `converted.${format}`;
+                            link.click();
+                        };
+                    }, `image/${format}`, quality);
+                };
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+        // Dark/Light Mode Toggle
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        // Show ads after they are loaded
+        window.addEventListener('load', function () {
+            document.querySelectorAll('.ad-unit').forEach(ad => ad.style.display = 'block');
+        });
+    </script>
+</body>
+</html>
