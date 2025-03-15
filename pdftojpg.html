@@ -149,12 +149,23 @@
         .image-wrapper {
             position: relative;
             display: inline-block;
+            text-align: center;
         }
 
         .image-wrapper img {
             max-width: 100%;
             border-radius: 5px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-number {
+            margin-top: 5px;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        body.dark-mode .page-number {
+            color: #ddd;
         }
 
         .download-btn {
@@ -358,6 +369,12 @@
                                 // Add image to the wrapper
                                 imageWrapper.appendChild(image);
 
+                                // Add page number below the image
+                                const pageNumber = document.createElement('div');
+                                pageNumber.className = 'page-number';
+                                pageNumber.textContent = `Page ${i}`;
+                                imageWrapper.appendChild(pageNumber);
+
                                 // Add download button
                                 const downloadBtn = document.createElement('button');
                                 downloadBtn.className = 'download-btn';
@@ -386,4 +403,4 @@
         }
     </script>
 </body>
-                            </html>
+</html>
