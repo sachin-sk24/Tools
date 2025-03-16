@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Resize and optimize your images online with our free tool. Perfect for web developers and designers.">
+    <meta name="keywords" content="image resizer, image optimizer, resize images, optimize images, web tool">
+    <meta name="author" content="Your Name">
+    <title>Image Resizer - Resize and Optimize Images Online</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Home Button */
+        #home-button-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        #home-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #home-button:hover {
+            background-color: #45a049;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Image Resizer Section */
+        #image-resizer {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #image-resizer input, #image-resizer select, #image-resizer button {
+            display: block;
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #image-resizer button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #image-resizer button:hover {
+            background-color: #45a049;
+        }
+
+        #image-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        #resized-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: none; /* Hidden by default */
+        }
+
+        #download-link {
+            display: none; /* Hidden by default */
+            text-align: center;
+            margin-top: 20px;
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        #download-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Progress Bar */
+        #progress-bar {
+            width: 100%;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            display: none;
+        }
+
+        #progress {
+            width: 0%;
+            height: 10px;
+            background-color: #4CAF50;
+            transition: width 0.3s ease;
+        }
+
+        /* Ad Sections */
+        .ad-section {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Resizer</h1>
+        <p>Resize and optimize your images for free!</p>
+    </header>
+
+    <!-- Home Button Container -->
+    <div id="home-button-container">
+        <button id="home-button" onclick="window.location.href='/Tools/index.html'">Home</button>
+    </div>
+
+    <main>
+        <!-- Top Ad Section -->
+        <div class="ad-section">
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_UNIT_ID"
+                    crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_UNIT_ID"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- Image Resizer Tool -->
+        <section id="image-resizer">
+            <input type="file" id="image-input" accept="image/*">
+            <label for="resize-suggestion">Select Resize Suggestion:</label>
+            <select id="resize-suggestion">
+                <option value="custom">Custom Size</option>
+                <option value="300x300">300x300 (Small)</option>
+                <option value="600x600">600x600 (Medium)</option>
+                <option value="800x800">800x800 (Large)</option>
+            </select>
+            <div id="custom-size">
+                <label for="width">Width (px):</label>
+                <input type="number" id="width" placeholder="Enter width">
+                <label for="height">Height (px):</label>
+                <input type="number" id="height" placeholder="Enter height">
+            </div>
+            <div id="progress-bar">
+                <div id="progress"></div>
+            </div>
+            <button id="resize-btn">Resize Image</button>
+            <div id="image-container">
+                <img id="resized-image" src="" alt="Resized Image">
+            </div>
+            <a id="download-link" href="#" download="resized-image.png">Download Resized Image</a>
+        </section>
+
+        <!-- Bottom Ad Section -->
+        <div class="ad-section">
+            <!-- Google AdSense Ad Unit -->
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_UNIT_ID"
+                    crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_UNIT_ID"
+                 data-ad-slot="0987654321"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Image Resizer. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Show/hide custom size inputs based on selection
+        document.getElementById('resize-suggestion').addEventListener('change', function() {
+            const customSizeDiv = document.getElementById('custom-size');
+            if (this.value === 'custom') {
+                customSizeDiv.style.display = 'block';
+            } else {
+                customSizeDiv.style.display = 'none';
+            }
+        });
+
+        // Resize image functionality
+        document.getElementById('resize-btn').addEventListener('click', function() {
+            const fileInput = document.getElementById('image-input');
+            const resizeSuggestion = document.getElementById('resize-suggestion').value;
+            const widthInput = document.getElementById('width');
+            const heightInput = document.getElementById('height');
+            const imageContainer = document.getElementById('resized-image');
+            const downloadLink = document.getElementById('download-link');
+            const progressBar = document.getElementById('progress-bar');
+            const progress = document.getElementById('progress');
+
+            if (fileInput.files.length === 0) {
+                alert('Please select an image file.');
+                return;
+            }
+
+            // Show progress bar
+            progressBar.style.display = 'block';
+            progress.style.width = '0%';
+
+            const file = fileInput.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const img = new Image();
+                img.src = e.target.result;
+
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+
+                    let width, height;
+                    if (resizeSuggestion === 'custom') {
+                        width = widthInput.value ? parseInt(widthInput.value) : img.width;
+                        height = heightInput.value ? parseInt(heightInput.value) : img.height;
+                    } else {
+                        const dimensions = resizeSuggestion.split('x');
+                        width = parseInt(dimensions[0]);
+                        height = parseInt(dimensions[1]);
+                    }
+
+                    canvas.width = width;
+                    canvas.height = height;
+
+                    ctx.drawImage(img, 0, 0, width, height);
+
+                    // Simulate progress
+                    let progressWidth = 0;
+                    const interval = setInterval(() => {
+                        progressWidth += 10;
+                        progress.style.width = `${progressWidth}%`;
+                        if (progressWidth >= 100) {
+                            clearInterval(interval);
+                        }
+                    }, 30);
+
+                    setTimeout(() => {
+                        const resizedImage = canvas.toDataURL('image/png');
+                        imageContainer.src = resizedImage;
+                        imageContainer.style.display = 'block';
+                        downloadLink.href = resizedImage;
+                        downloadLink.style.display = 'block';
+                    }, 1000);
+                };
+            };
+
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
